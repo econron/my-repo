@@ -1,8 +1,14 @@
-name: Hello
-on: push
+name: Manual
+on:
+  workflow_dispatch:
+    inputs:
+      greeting:
+        type: string
+        default: "Hello, world!"
+        required: true
+        description: "The greeting to print"
 jobs:
-  hello:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello
-        run: echo "Hello, world!"
+      - run: echo "{{ inputs.greeting }}"
