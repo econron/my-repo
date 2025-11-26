@@ -6,3 +6,7 @@ func EvenOrOdd(number int) string {
 	}
 	return "Odd"
 }
+
+func main() {
+	fmt.Println(EvenOrOdd(1))
+}
