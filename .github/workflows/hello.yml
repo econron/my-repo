@@ -1,14 +1,13 @@
-name: Manual
+name: Test
 on:
-  workflow_dispatch:
-    inputs:
-      greeting:
-        type: string
-        default: "Hello, world!"
-        required: true
-        description: "The greeting to print"
+  pull_request:
+    paths: ['go/**/*.go']
 jobs:
-  run:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "{{ inputs.greeting }}"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 1.23
+      - run: go test go/excellent/...
